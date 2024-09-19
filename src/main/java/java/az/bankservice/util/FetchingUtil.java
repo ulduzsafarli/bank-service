@@ -1,6 +1,7 @@
 package java.az.bankservice.util;
 
 import lombok.experimental.UtilityClass;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
 
 import java.az.bankservice.enumeration.accounts.CurrencyType;
@@ -16,7 +17,8 @@ import java.util.Objects;
 @UtilityClass
 public class FetchingUtil {
 
-    private static final String FILEPATH = "currencies.txt";
+    @Value("${bank.path.file}")
+    private String filePath;
 
     public static String fetchXmlData(String url) {
         try {
@@ -75,7 +77,7 @@ public class FetchingUtil {
 
 
     public void saveCurrenciesToFile(String currencies) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILEPATH))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write(currencies);
         } catch (IOException e) {
             throw new FetchingDataException("Failed to save filtered currencies to file: " + e.getMessage(), e);
@@ -84,7 +86,7 @@ public class FetchingUtil {
 
     public String readCurrencyFile() {
         StringBuilder content = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILEPATH))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 content.append(line).append("\n");
@@ -98,7 +100,7 @@ public class FetchingUtil {
     public Map<String, BigDecimal> fetchRates() {
         Map<String, BigDecimal> rates = new HashMap<>();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILEPATH))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             String code = null;
             while ((line = reader.readLine()) != null) {

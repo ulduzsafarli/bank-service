@@ -16,7 +16,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class CurrencyServiceImpl implements CurrencyService {
 
-    @Value("${url.prefix}")
+    @Value("${bank.url.prefix}")
     private String urlPrefix;
 
     private String generateUrlWithDate() {

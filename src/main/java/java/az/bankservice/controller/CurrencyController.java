@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.az.bankservice.service.CurrencyService;
 
 @RestController
-@RequestMapping("/api/v1/currency")
+@RequestMapping("/currency")
 @RequiredArgsConstructor
 public class CurrencyController {
     private final CurrencyService currencyService;
