@@ -9,8 +9,9 @@ import java.az.bankservice.exception.custom.NotFoundException;
 import java.az.bankservice.mapper.NotificationMapper;
 import java.az.bankservice.model.notifications.NotificationRequest;
 import java.az.bankservice.model.notifications.NotificationResponse;
+import java.az.bankservice.model.support.EmailAnswerDto;
 import java.az.bankservice.repository.NotificationRepository;
-import java.az.bankservice.service.EmailSendingService;
+import java.az.bankservice.service.NotificationEmailService;
 import java.az.bankservice.service.NotificationService;
 import java.az.bankservice.service.UserService;
 import java.time.LocalDate;
@@ -24,7 +25,7 @@ public class NotificationServiceImpl implements NotificationService {
     private final NotificationMapper notificationMapper;
     private final NotificationRepository notificationRepository;
     private final UserService userService;
-    private final EmailSendingService emailSendingService;
+    private final NotificationEmailService notificationEmailService;
 
     private static final String NOT_FOUND = "Notification %s by ID not found.";
 
@@ -37,18 +38,15 @@ public class NotificationServiceImpl implements NotificationService {
         notification.setSentDate(LocalDate.now());
         notificationRepository.save(notification);
         var emailForm = new EmailAnswerDto(notificationRequest.getMessage());
-        emailSendingService.sendNotificationEmail(user.getEmail(), emailForm);
-        log.info("Successfully create notification for user {}", notificationRequest.getUserId());
+        notificationEmailService.sendNotificationEmail(user.getEmail(), emailForm);
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<NotificationResponse> getAll() {
         log.info("Receiving all notifications");
-        var notifications = notificationRepository.findAll()
+        return notificationRepository.findAll()
                 .stream().map(notificationMapper::toDto).toList();
-        log.info("Successfully receive all notifications");
-        return notifications;
     }
 
     @Override
