@@ -1,10 +1,10 @@
 package java.az.bankservice.repository;
 
-import org.matrix.izumbankapp.dao.entities.Deposit;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.az.bankservice.entities.Deposit;
 import java.util.List;
 
 public interface DepositRepository extends JpaRepository<Deposit, Long> {

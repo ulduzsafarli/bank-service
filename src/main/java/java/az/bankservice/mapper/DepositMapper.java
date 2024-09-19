@@ -1,8 +1,9 @@
 package java.az.bankservice.mapper;
 
 import org.mapstruct.*;
-import org.matrix.izumbankapp.dao.entities.Deposit;
-import org.matrix.izumbankapp.model.deposits.DepositResponse;
+
+import java.az.bankservice.entities.Deposit;
+import java.az.bankservice.model.deposits.DepositResponse;
 
 @Mapper(componentModel = "spring", uses = {AccountMapper.class},
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
