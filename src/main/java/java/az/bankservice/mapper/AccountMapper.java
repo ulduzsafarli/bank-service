@@ -21,6 +21,6 @@ public interface AccountMapper {
     @Mapping(target = "user.id", source = "userId")
     Account fromRequestDtoForUser(AccountCreateDto accountCreateDto);
 
-    @Mapping(target = "id", ignore = true) // Ignore ID for updates if not needed
-    Account updateEntityFromDto(AccountRequest accountRequest, @MappingTarget Account accountEntity);
+    @Mapping(target = "id", ignore = true)
+    void updateEntityFromDto(AccountRequest accountRequest, @MappingTarget Account accountEntity);
 }
