@@ -3,8 +3,8 @@ package java.az.bankservice.model.notifications;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.matrix.izumbankapp.enumeration.NotificationType;
 
+import java.az.bankservice.enumeration.NotificationType;
 import java.time.LocalDate;
 
 @Data

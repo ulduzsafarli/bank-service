@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.matrix.izumbankapp.enumeration.auth.Role;
-import org.matrix.izumbankapp.model.accounts.AccountsUserResponse;
 
+import java.az.bankservice.enumeration.auth.Role;
+import java.az.bankservice.model.accounts.AccountsUserResponse;
 import java.util.List;
 
 @AllArgsConstructor

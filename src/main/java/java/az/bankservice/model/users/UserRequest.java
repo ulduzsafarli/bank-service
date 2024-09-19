@@ -8,9 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.matrix.izumbankapp.enumeration.auth.Role;
-import org.matrix.izumbankapp.model.users.profile.UserProfileDto;
 
+import java.az.bankservice.enumeration.auth.Role;
+import java.az.bankservice.model.users.profile.UserProfileDto;
 import java.util.Collections;
 import java.util.Set;
 

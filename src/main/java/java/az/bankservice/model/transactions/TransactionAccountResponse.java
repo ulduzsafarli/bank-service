@@ -3,9 +3,9 @@ package java.az.bankservice.model.transactions;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.matrix.izumbankapp.enumeration.transaction.TransactionStatus;
-import org.matrix.izumbankapp.enumeration.transaction.TransactionType;
 
+import java.az.bankservice.enumeration.transaction.TransactionStatus;
+import java.az.bankservice.enumeration.transaction.TransactionType;
 import java.math.BigDecimal;
 @Data
 @NoArgsConstructor

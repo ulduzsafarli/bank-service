@@ -2,7 +2,6 @@ package java.az.bankservice.config;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.matrix.izumbankapp.enumeration.auth.Role;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -13,8 +12,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static org.matrix.izumbankapp.enumeration.auth.Permission.*;
-import static org.matrix.izumbankapp.enumeration.auth.UrlMapping.*;
+import java.az.bankservice.enumeration.auth.Role;
+
+import static java.az.bankservice.enumeration.auth.Permission.*;
+import static java.az.bankservice.enumeration.auth.UrlMapping.*;
 import static org.springframework.http.HttpMethod.*;
 
 

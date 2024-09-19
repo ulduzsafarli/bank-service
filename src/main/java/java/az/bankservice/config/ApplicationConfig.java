@@ -1,7 +1,6 @@
 package java.az.bankservice.config;
 
 import lombok.RequiredArgsConstructor;
-import org.matrix.izumbankapp.dao.repository.UserRepository;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.az.bankservice.repository.UserRepository;
 
 @Configuration
 @RequiredArgsConstructor

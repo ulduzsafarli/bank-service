@@ -3,8 +3,8 @@ package java.az.bankservice.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.matrix.izumbankapp.enumeration.NotificationType;
 
+import java.az.bankservice.enumeration.NotificationType;
 import java.io.Serializable;
 import java.time.LocalDate;
 

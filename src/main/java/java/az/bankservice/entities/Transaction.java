@@ -4,11 +4,11 @@ import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.matrix.izumbankapp.dao.entities.abstractentity.Auditable;
-import org.matrix.izumbankapp.enumeration.transaction.TransactionStatus;
-import org.matrix.izumbankapp.enumeration.transaction.TransactionType;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.az.bankservice.entities.abstractentity.Auditable;
+import java.az.bankservice.enumeration.transaction.TransactionStatus;
+import java.az.bankservice.enumeration.transaction.TransactionType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
