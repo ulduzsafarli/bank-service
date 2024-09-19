@@ -109,41 +109,6 @@ The Bank Service Project is a comprehensive backend application designed for man
 - **Get Currency Information**: `GET /api/v1/currency`
 - **Upload Currency File**: `POST /api/v1/currency/file`
 
-## Deposits
-
-### Overview
-
-The Deposits module allows users to manage their deposits with specific interest rates:
-
-- **Monthly Interest Rate**: The interest rate applied on a monthly basis.
-- **Annual Interest Rate**: The interest rate applied on an annual basis.
-
-### Example Deposit Creation Request
-
-```json
-{
-  "accountId": "12345",
-  "amount": 10000,
-  "monthlyInterestRate": 0.5,
-  "annualInterestRate": 6.0,
-  "startDate": "2024-01-01"
-}
-```
-
-### Example Response
-
-```json
-{
-  "depositId": "67890",
-  "accountId": "12345",
-  "amount": 10000,
-  "monthlyInterestRate": 0.5,
-  "annualInterestRate": 6.0,
-  "startDate": "2024-01-01",
-  "status": "Created"
-}
-```
-
 ## Usage
 
 1. **Authentication**
