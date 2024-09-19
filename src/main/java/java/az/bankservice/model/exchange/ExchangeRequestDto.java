@@ -4,7 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.matrix.izumbankapp.enumeration.accounts.CurrencyType;
+
+import java.az.bankservice.enumeration.accounts.CurrencyType;
 
 @Data
 @AllArgsConstructor

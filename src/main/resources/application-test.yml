@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bank_service
+    username: postgres
+    password: 123456
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ulduzsafarli.dv@gmail.com
+    password: crczqmkmwzaqmwgv
+    to: ulduzasafarli.dv@gmail.com
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true

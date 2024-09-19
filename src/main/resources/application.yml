@@ -32,3 +32,6 @@ spring:
           auth: true
           starttls:
             enable: true
+
+url:
+  prefix: https://www.cbar.az/currencies/

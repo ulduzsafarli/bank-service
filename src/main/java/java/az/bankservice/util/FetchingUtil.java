@@ -1,14 +1,11 @@
 package java.az.bankservice.util;
 
 import lombok.experimental.UtilityClass;
-import org.matrix.izumbankapp.enumeration.accounts.CurrencyType;
-import org.matrix.izumbankapp.exception.currencies.CurrencyFileException;
-import org.matrix.izumbankapp.exception.currencies.CurrencyFilteringException;
-import org.matrix.izumbankapp.exception.currencies.CurrencyRateFormatException;
-import org.matrix.izumbankapp.exception.supports.FetchingDataException;
-import org.matrix.izumbankapp.model.exchange.CurrencyData;
 import org.springframework.web.client.RestTemplate;
 
+import java.az.bankservice.enumeration.accounts.CurrencyType;
+import java.az.bankservice.exception.custom.FetchingDataException;
+import java.az.bankservice.model.exchange.CurrencyData;
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.EnumSet;
@@ -57,7 +54,7 @@ public class FetchingUtil {
                 }
             }
         } catch (IOException e) {
-            throw new CurrencyFilteringException("Failed to filter currencies: " + e.getMessage(), e);
+            throw new FetchingDataException("Failed to filter currencies: " + e.getMessage(), e);
         }
         return filteredData.toString().trim();
     }
@@ -81,7 +78,7 @@ public class FetchingUtil {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILEPATH))) {
             writer.write(currencies);
         } catch (IOException e) {
-            throw new CurrencyFileException("Failed to save filtered currencies to file: " + e.getMessage(), e);
+            throw new FetchingDataException("Failed to save filtered currencies to file: " + e.getMessage(), e);
         }
     }
 
@@ -93,7 +90,7 @@ public class FetchingUtil {
                 content.append(line).append("\n");
             }
         } catch (IOException e) {
-            throw new CurrencyFileException("Failed to read currency file: " + e.getMessage(), e);
+            throw new FetchingDataException("Failed to read currency file: " + e.getMessage(), e);
         }
         return content.toString();
     }
@@ -113,14 +110,14 @@ public class FetchingUtil {
                         BigDecimal rate = new BigDecimal(trim);
                         rates.put(code, rate);
                     } else {
-                        throw new CurrencyFilteringException("Currency code is missing for rate: " + line);
+                        throw new FetchingDataException("Currency code is missing for rate: " + line);
                     }
                 }
             }
         } catch (IOException e) {
-            throw new CurrencyFilteringException("Failed to read rates from file: " + e.getMessage(), e);
+            throw new FetchingDataException("Failed to read rates from file: " + e.getMessage(), e);
         } catch (NumberFormatException e) {
-            throw new CurrencyRateFormatException("Invalid rate format, message: " + e.getMessage(), e);
+            throw new FetchingDataException("Invalid rate format, message: " + e.getMessage(), e);
         }
 
         return rates;

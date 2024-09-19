@@ -1,9 +1,9 @@
 package java.az.bankservice.model.accounts;
 
 import jakarta.validation.constraints.*;
-import org.matrix.izumbankapp.enumeration.accounts.AccountType;
-import org.matrix.izumbankapp.enumeration.accounts.CurrencyType;
 
+import java.az.bankservice.enumeration.accounts.AccountType;
+import java.az.bankservice.enumeration.accounts.CurrencyType;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
