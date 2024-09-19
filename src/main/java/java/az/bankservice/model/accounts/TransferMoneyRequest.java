@@ -5,7 +5,8 @@ import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.matrix.izumbankapp.model.transactions.TransactionAccountRequest;
+
+import java.az.bankservice.model.transactions.TransactionAccountRequest;
 
 
 @Data
