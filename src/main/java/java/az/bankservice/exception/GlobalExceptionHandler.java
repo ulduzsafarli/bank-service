@@ -6,18 +6,6 @@ import jakarta.mail.MessagingException;
 import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.matrix.izumbankapp.exception.accounts.AccountClosingException;
-import org.matrix.izumbankapp.exception.accounts.AccountStatusException;
-import org.matrix.izumbankapp.exception.accounts.InsufficientFundsException;
-import org.matrix.izumbankapp.exception.accounts.WithdrawException;
-import org.matrix.izumbankapp.exception.currencies.*;
-import org.matrix.izumbankapp.exception.error.ErrorDetails;
-import org.matrix.izumbankapp.exception.error.ValidationError;
-import org.matrix.izumbankapp.exception.supports.EmailSendingException;
-import org.matrix.izumbankapp.exception.supports.FetchingDataException;
-import org.matrix.izumbankapp.exception.transactions.TransactionAmountException;
-import org.matrix.izumbankapp.exception.transactions.TransactionLimitException;
-import org.matrix.izumbankapp.exception.transactions.TransactionValidationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -32,9 +20,9 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.naming.AuthenticationException;
-import java.az.bankservice.exception.custom.DuplicateDataException;
-import java.az.bankservice.exception.custom.InvalidPinException;
-import java.az.bankservice.exception.custom.NotFoundException;
+import java.az.bankservice.exception.custom.*;
+import java.az.bankservice.exception.error.ErrorDetails;
+import java.az.bankservice.exception.error.ValidationError;
 import java.util.*;
 
 @Slf4j
@@ -52,43 +40,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
     @ExceptionHandler
     public ResponseEntity<ErrorDetails> handle(
-            InsufficientFundsException ex, WebRequest webRequest) {
-        log.error(EXCEPTION_OCCURRED_MESSAGE, ex);
-        return new ResponseEntity<>(createErrorDetails(ex, webRequest, HttpStatus.CONFLICT), HttpStatus.CONFLICT);
-    }
-    @ExceptionHandler
-    public ResponseEntity<ErrorDetails> handle(
-            InvalidPinException ex, WebRequest webRequest) {
-        log.error(EXCEPTION_OCCURRED_MESSAGE, ex);
-        return new ResponseEntity<>(createErrorDetails(ex, webRequest, HttpStatus.CONFLICT), HttpStatus.CONFLICT);
-    }
-    @ExceptionHandler
-    public ResponseEntity<ErrorDetails> handle(
             IllegalStateException ex, WebRequest webRequest) {
-        log.error(EXCEPTION_OCCURRED_MESSAGE, ex);
-        return new ResponseEntity<>(createErrorDetails(ex, webRequest, HttpStatus.CONFLICT), HttpStatus.CONFLICT);
-    }
-    @ExceptionHandler
-    public ResponseEntity<ErrorDetails> handle(
-            TransactionAmountException ex, WebRequest webRequest) {
-        log.error(EXCEPTION_OCCURRED_MESSAGE, ex);
-        return new ResponseEntity<>(createErrorDetails(ex, webRequest, HttpStatus.CONFLICT), HttpStatus.CONFLICT);
-    }
-    @ExceptionHandler
-    public ResponseEntity<ErrorDetails> handle(
-            TransactionLimitException ex, WebRequest webRequest) {
-        log.error(EXCEPTION_OCCURRED_MESSAGE, ex);
-        return new ResponseEntity<>(createErrorDetails(ex, webRequest, HttpStatus.CONFLICT), HttpStatus.CONFLICT);
-    }
-   @ExceptionHandler(TransactionValidationException.class)
-    public ResponseEntity<ErrorDetails> handle(
-            TransactionValidationException ex, WebRequest webRequest) {
-        log.error(EXCEPTION_OCCURRED_MESSAGE, ex);
-        return new ResponseEntity<>(createErrorDetails(ex, webRequest, HttpStatus.CONFLICT), HttpStatus.CONFLICT);
-    }
-    @ExceptionHandler
-    public ResponseEntity<ErrorDetails> handle(
-            WithdrawException ex, WebRequest webRequest) {
         log.error(EXCEPTION_OCCURRED_MESSAGE, ex);
         return new ResponseEntity<>(createErrorDetails(ex, webRequest, HttpStatus.CONFLICT), HttpStatus.CONFLICT);
     }
@@ -106,49 +58,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
     @ExceptionHandler
     public ResponseEntity<ErrorDetails> handle(
-            CurrencyFetchingException ex, WebRequest webRequest) {
-        log.error(EXCEPTION_OCCURRED_MESSAGE, ex);
-        return new ResponseEntity<>(createErrorDetails(ex, webRequest, HttpStatus.CONFLICT), HttpStatus.CONFLICT);
-    }
-    @ExceptionHandler
-    public ResponseEntity<ErrorDetails> handle(
-            UnsupportedCurrencyException ex, WebRequest webRequest) {
-        log.error(EXCEPTION_OCCURRED_MESSAGE, ex);
-        return new ResponseEntity<>(createErrorDetails(ex, webRequest, HttpStatus.CONFLICT), HttpStatus.CONFLICT);
-    }
-    @ExceptionHandler
-    public ResponseEntity<ErrorDetails> handle(
             EmailSendingException ex, WebRequest webRequest) {
-        log.error(EXCEPTION_OCCURRED_MESSAGE, ex);
-        return new ResponseEntity<>(createErrorDetails(ex, webRequest, HttpStatus.CONFLICT), HttpStatus.CONFLICT);
-    }
-    @ExceptionHandler
-    public ResponseEntity<ErrorDetails> handle(
-            CurrencyRateFormatException ex, WebRequest webRequest) {
-        log.error(EXCEPTION_OCCURRED_MESSAGE, ex);
-        return new ResponseEntity<>(createErrorDetails(ex, webRequest, HttpStatus.CONFLICT), HttpStatus.CONFLICT);
-    }
-    @ExceptionHandler
-    public ResponseEntity<ErrorDetails> handle(
-            CurrencyFileException ex, WebRequest webRequest) {
-        log.error(EXCEPTION_OCCURRED_MESSAGE, ex);
-        return new ResponseEntity<>(createErrorDetails(ex, webRequest, HttpStatus.CONFLICT), HttpStatus.CONFLICT);
-    }
-    @ExceptionHandler
-    public ResponseEntity<ErrorDetails> handle(
-            CurrencyFilteringException ex, WebRequest webRequest) {
-        log.error(EXCEPTION_OCCURRED_MESSAGE, ex);
-        return new ResponseEntity<>(createErrorDetails(ex, webRequest, HttpStatus.CONFLICT), HttpStatus.CONFLICT);
-    }
-    @ExceptionHandler
-    public ResponseEntity<ErrorDetails> handle(
-            AccountClosingException ex, WebRequest webRequest) {
-        log.error(EXCEPTION_OCCURRED_MESSAGE, ex);
-        return new ResponseEntity<>(createErrorDetails(ex, webRequest, HttpStatus.CONFLICT), HttpStatus.CONFLICT);
-    }
-    @ExceptionHandler
-    public ResponseEntity<ErrorDetails> handle(
-            AccountStatusException ex, WebRequest webRequest) {
         log.error(EXCEPTION_OCCURRED_MESSAGE, ex);
         return new ResponseEntity<>(createErrorDetails(ex, webRequest, HttpStatus.CONFLICT), HttpStatus.CONFLICT);
     }
