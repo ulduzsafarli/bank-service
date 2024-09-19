@@ -1,10 +1,11 @@
 package java.az.bankservice.service;
 
-import org.matrix.izumbankapp.model.support.EmailAnswerDto;
-import org.matrix.izumbankapp.model.support.SupportDto;
-import org.matrix.izumbankapp.model.support.SupportResponseDto;
 
+import java.az.bankservice.model.support.EmailAnswerDto;
+import java.az.bankservice.model.support.SupportDto;
+import java.az.bankservice.model.support.SupportResponseDto;
 import java.util.List;
+
 public interface SupportService {
     void sendRequest(SupportDto supportDto);
 

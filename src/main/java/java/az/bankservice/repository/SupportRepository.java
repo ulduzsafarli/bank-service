@@ -1,9 +1,9 @@
 package java.az.bankservice.repository;
 
-import org.matrix.izumbankapp.dao.entities.Support;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.az.bankservice.entities.Support;
 import java.util.List;
 
 public interface SupportRepository extends JpaRepository<Support, Long> {

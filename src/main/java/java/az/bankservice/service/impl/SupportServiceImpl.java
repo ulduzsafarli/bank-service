@@ -2,17 +2,17 @@ package java.az.bankservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.matrix.izumbankapp.dao.entities.Support;
-import org.matrix.izumbankapp.dao.repository.SupportRepository;
-import org.matrix.izumbankapp.exception.NotFoundException;
-import org.matrix.izumbankapp.mapper.SupportMapper;
-import org.matrix.izumbankapp.model.support.EmailAnswerDto;
-import org.matrix.izumbankapp.model.support.SupportDto;
-import org.matrix.izumbankapp.model.support.SupportResponseDto;
-import org.matrix.izumbankapp.service.EmailSendingService;
-import org.matrix.izumbankapp.service.SupportService;
 import org.springframework.stereotype.Service;
 
+import java.az.bankservice.entities.Support;
+import java.az.bankservice.exception.custom.NotFoundException;
+import java.az.bankservice.mapper.SupportMapper;
+import java.az.bankservice.model.support.EmailAnswerDto;
+import java.az.bankservice.model.support.SupportDto;
+import java.az.bankservice.model.support.SupportResponseDto;
+import java.az.bankservice.repository.SupportRepository;
+import java.az.bankservice.service.SupportService;
+import java.az.bankservice.service.util.SupportEmailService;
 import java.util.List;
 
 @Slf4j
@@ -22,15 +22,14 @@ public class SupportServiceImpl implements SupportService {
 
     private final SupportRepository supportRepository;
     private final SupportMapper supportMapper;
-    private final EmailSendingService emailSendingService;
+    private final SupportEmailService supportEmailService;
 
     @Override
     public void sendRequest(SupportDto supportDto) {
         log.info("Processing support request: {}", supportDto);
 
         supportRepository.save(supportMapper.toEntity(supportDto));
-        emailSendingService.sendSupportEmail(supportDto);
-        log.info("Contact form sent successfully: {}", supportDto);
+        supportEmailService.sendSupportEmail(supportDto);
     }
 
     @Override
@@ -39,25 +38,20 @@ public class SupportServiceImpl implements SupportService {
         Support support = supportRepository.findById(supportID)
                 .orElseThrow(() -> new NotFoundException("Support message not found with ID " + supportID));
 
-        emailSendingService.sendResponseEmail(support.getEmail(), emailAnswerDto);
+        supportEmailService.sendResponseEmail(support.getEmail(), emailAnswerDto);
         support.setAnswered(true);
         supportRepository.save(support);
-        log.info("Response email sent successfully to {}", support.getEmail());
     }
 
     @Override
     public List<SupportResponseDto> getRequests() {
         log.info("Retrieving all support requests");
-        var supports = supportRepository.findAll().stream().map(supportMapper::toResponseList).toList();
-        log.info("Successfully retrieve all support requests");
-        return supports;
+        return supportRepository.findAll().stream().map(supportMapper::toResponseList).toList();
     }
 
     @Override
     public List<SupportResponseDto> getUnAnsweredRequests() {
-        log.info("Retrieving all support requests");
-        var supports = supportRepository.findUnAnsweredRequests().stream().map(supportMapper::toResponseList).toList();
-        log.info("Successfully retrieve all support requests");
-        return supports;
+        log.info("Retrieving all unanswered support requests");
+        return supportRepository.findUnAnsweredRequests().stream().map(supportMapper::toResponseList).toList();
     }
 }

@@ -3,9 +3,10 @@ package java.az.bankservice.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValuePropertyMappingStrategy;
-import org.matrix.izumbankapp.dao.entities.Support;
-import org.matrix.izumbankapp.model.support.SupportDto;
-import org.matrix.izumbankapp.model.support.SupportResponseDto;
+
+import java.az.bankservice.entities.Support;
+import java.az.bankservice.model.support.SupportDto;
+import java.az.bankservice.model.support.SupportResponseDto;
 
 
 @Mapper(componentModel = "spring",
