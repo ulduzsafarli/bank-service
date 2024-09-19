@@ -124,4 +124,4 @@ The Bank Service Project is a comprehensive backend application designed for man
 
 For any questions or support, please contact:
 
-- **Email**: [my-email@example.com](mailto:ulduzsafarli.dv@example.com)
+- **Email**: [ulduzsafarli.dv@example.com](mailto:ulduzsafarli.dv@example.com)
