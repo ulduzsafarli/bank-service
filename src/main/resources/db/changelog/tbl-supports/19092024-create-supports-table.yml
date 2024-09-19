@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: 5
+      author: Ulduz Safarli
+      changes:
+        - createTable:
+            tableName: transactions
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: amount
+                  type: DECIMAL(19, 4)
+              - column:
+                  name: type
+                  type: VARCHAR(50)
+              - column:
+                  name: status
+                  type: VARCHAR(50)
+              - column:
+                  name: transaction_uuid
+                  type: VARCHAR(255)
+                  constraints:
+                    unique: true
+              - column:
+                  name: comments
+                  type: VARCHAR(255)
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+              - column:
+                  name: created_by
+                  type: VARCHAR(255)
+              - column:
+                  name: updated_by
+                  type: VARCHAR(255)
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+              - column:
+                  name: account_id
+                  type: BIGINT
+            foreignKeys:
+              - foreignKey:
+                  constraintName: fk_transactions_accounts
+                  baseTableName: transactions
+                  baseColumnNames: account_id
+                  referencedTableName: accounts
+                  referencedColumnNames: id

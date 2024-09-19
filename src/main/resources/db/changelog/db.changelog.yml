@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - includeAll:
+      path: db.changelog/tbl-user-profile
+  - includeAll:
+      path: db.changelog/tbl-users
+  - includeAll:
+      path: db.changelog/tbl-accounts
+  - includeAll:
+      path: db.changelog/tbl-supports
+  - includeAll:
+      path: db.changelog/tbl-transactions
+  - includeAll:
+      path: db.changelog/tbl-deposit
+  - includeAll:
+      path: db.changelog/tbl-notifications

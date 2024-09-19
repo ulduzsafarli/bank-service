@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: Ulduz Safarli
+      changes:
+        - createTable:
+            tableName: notifications
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: message
+                  type: TEXT
+              - column:
+                  name: sent_date
+                  type: TIMESTAMP
+              - column:
+                  name: type
+                  type: VARCHAR(255)
+              - column:
+                  name: user_id
+                  type: BIGINT
+            foreignKeys:
+              - foreignKey:
+                  constraintName: fk_notifications_users
+                  baseTableName: notifications
+                  baseColumnNames: user_id
+                  referencedTableName: users
+                  referencedColumnNames: id

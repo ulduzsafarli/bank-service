@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: Ulduz Safarli
+      changes:
+        - createTable:
+            tableName: deposits
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: account_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amount
+                  type: NUMERIC(19, 2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: interest_rate
+                  type: NUMERIC(19, 2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: yearly_interest
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+            foreignKeys:
+              - foreignKey:
+                  constraintName: fk_deposits_accounts
+                  baseTableName: deposits
+                  baseColumnNames: account_id
+                  referencedTableName: accounts
+                  referencedColumnNames: id
